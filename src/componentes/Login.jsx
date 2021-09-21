@@ -68,7 +68,7 @@ const Login = () => {
           { msgerror && <div style={style}> {msgerror} </div> }
       </div>
     </div>
-  )
+ )
 }
 
 export default Login;
