@@ -21,6 +21,7 @@ const handleSubmit = (textMessage) => {
             username:'ana',
           })
         );
+        setMessage='';
       };
       return (
         <Container component="main" maxWidth="xs">
@@ -39,14 +40,12 @@ const handleSubmit = (textMessage) => {
             // onKeyPress={this.handleKeyPress.bind(this)}
           />
           <div className="submit">
-          {/* <input value={clientName} type='text' placeholder='Ingrese un nombre' onChange={(e) => setClientName(e.target.value)}></input> */}
-
           <Button
-        type="button"
-        variant="danger"
-        onClick={() =>handleSubmit(message)}>
-        Enviar mensaje
-      </Button>
+            type="button"
+            variant="danger"
+            onClick={() =>handleSubmit(message)}>
+            Enviar mensaje
+          </Button>
           </div>
         </div>
       </Container>
