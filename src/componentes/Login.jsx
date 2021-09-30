@@ -1,73 +1,110 @@
 import React, { useState } from 'react'
 // import { auth } from '../firebaseconfig'
-import { Form, Button } from 'react-bootstrap'
+// import { Form, Button } from 'react-bootstrap'
 // import logo from '../img/logo.png'
-import { useHistory}  from 'react-router-dom'
+// import { useHistory}  from 'react-router-dom'
+import { Box, TextField} from '@material-ui/core';
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import Link from '@material-ui/core/Link'
 
 
 const Login = () => {
-  const historial = useHistory('');
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
-  const [msgerror, setMsgError] = useState(null);
-  const style = {
-    color: "red"
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
+  const [error, setError] = useState(null)
+  const [isRegister, setIsRegister] = useState(true)
+  const processData = e => {
+    e.preventDefault()
+        if(!email.trim()){
+        //console.log('Ingrese Email')
+        setError('Ingrese Email')
+        return
+    }
+    e.preventDefault()
+        if(!pass.trim()){
+        //console.log('Ingrese Contraseña')
+        setError('Ingrese Contraseña')
+        return
+    }
+      fetch('https://chat-app-comes.herokuapp.com/users')
+      .then((res) => res.json())
+      .then((data) => {
+        const found = data.find( element => element.userEmail === email );
+        if (found){
+          return alert('email encontrado')
+        } else {return alert('intenta con otro usuario')}
+      })
+      .catch(console.log);
   }
 
-  // const LoginWaiter = e => {
-  //   console.log(e.target.innerText);
-
-  //   auth.signInWithEmailAndPassword(email, pass)
-  //   .then((r) => {
-  //     e.target.innerText === "Mesero" ? historial.push('/lunch') : historial.push('/kitchen')
-  //   })
-  //   .catch((err) => {
-  //     const { code } = err;
-  //     switch(code){
-  //       case "auth/invalid-email":
-  //         setMsgError("Formato de correo invalido");
-  //         break;
-  //       case "auth/user-not-found":
-  //         setMsgError("Usuario no encontrado");
-  //         break;
-  //       default: setMsgError("");
-  //     }
-  //   })
-  // }
-
   return ( 
-    <div className = 'login-container'>
-      
-      <div>
-        <Form >
-          <Form.Group  controlId="formBasicEmail">
-            <Form.Label></Form.Label>
-            <Form.Control
-            onChange = {(e) => {setEmail(e.target.value)}}
-            type="email" placeholder="Usuario" />
-            <Form.Text className="text-muted">
-            </Form.Text>
-          </Form.Group>
+      <Grid
+            item xs={12}>
+              <form onSubmit={processData}>
+                {
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label></Form.Label>
-            <Form.Control 
-            onChange = {(e) => {setPass(e.target.value)}}
-            type="password" placeholder="Contraseña" />
-          </Form.Group>
-      </Form>
-        <div>  
-          <Button 
-              // onClick={(e) => LoginWaiter(e)}
-              // variant="primary"
-              // type="submit"
+                  error && (
+                    <div className="divAlert">{error}</div>
+                  )
+
+                }
+              <Box 
+              textAlign="center">
+                
+              <TextField
+                type="email"
+                className="email"
+                placeholder="Email"
+                onChange={e => setEmail(e.target.value)}
+                value={email}  
+              />
+              <br />
+              <br/>
+              <TextField
+                type="password"
+                className="password"
+                placeholder="Contraseña"
+                onChange={e => setPass(e.target.value)}                            
+                value={pass}
+                />
+                </Box>
+              <Box textAlign="center">
+            <Link
+              component="button"
+              variant="body2"
+              onClick={() => {
+                console.info("I'm a button.");
+              }}
             >
-              Ingresar
-          </Button>
-        </div>
-          { msgerror && <div style={style}> {msgerror} </div> }
-      </div>
-    </div>
+              Olvidé mi contraseña
+            </Link>
+            </Box>
+              <Box textAlign="center">
+              <br />
+            <Button 
+            type="submit">
+              {
+                isRegister ? 'Acceder' : 'Registrarse'
+              }
+            </Button>
+            </Box>
+            <Box textAlign="center">
+            <Link
+              type="button"
+              variant="body2"
+              onClick={() => {
+                setIsRegister(!isRegister)}}
+            >
+              {
+                isRegister ? '¿Eres nuevo?' : '¿Ya tienes cuenta?'
+              }
+              
+            </Link>
+            </Box>
+            
+            </form>
+          </Grid>
  )
 }
 
