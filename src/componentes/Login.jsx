@@ -14,6 +14,7 @@ const Login = () => {
   const [pass, setPass] = useState('')
   const [error, setError] = useState(null)
   const [isRegister, setIsRegister] = useState(true)
+  
   const processData = e => {
     e.preventDefault()
         if(!email.trim()){
@@ -27,17 +28,41 @@ const Login = () => {
         setError('Ingrese Contraseña')
         return
     }
-      fetch('https://chat-app-comes.herokuapp.com/users')
-      .then((res) => res.json())
-      .then((data) => {
-        const found = data.find( element => element.userEmail === email );
-        if (found){
-          return alert('email encontrado')
-        } else {return alert('intenta con otro usuario')}
-      })
-      .catch(console.log);
-  }
+  //     fetch('https://chat-app-comes.herokuapp.com/auth')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const found = data.find( element => element.userEmail === email );
+  //       if (found){
+  //         return alert('email encontrado')
+  //       } else {return alert('intenta con otro usuario')}
+  //     })
+  //     .catch(console.log);
+  // }
 
+  fetch('https://chat-app-comes.herokuapp.com/auth', {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify( {
+
+            "email": email,
+            "password": pass,
+        })
+      
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        console.log( res );
+        let inMemoryToken = res.token;
+        console.log( inMemoryToken );
+        // { Authorization: `Bearer  ${ inMemoryToken }`; }
+        return inMemoryToken;
+       
+    })
+    .catch(console.log)
+  }
   return ( 
       <Grid
             item xs={12}>
