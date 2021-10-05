@@ -7,7 +7,7 @@ import MessageEdit from "../componentes/chatbox/MessageEdit";
 const socketEndpoint = "https://chat-app-comes.herokuapp.com";
 const fetchEndpoint = `${socketEndpoint}/messages`;
 const socket = socketIOClient(socketEndpoint);
-function ConversationsList(props) {
+function ConversationsList() {
    const [messages, setMessages] = useState([]);
    useEffect(() => {
       fetch(fetchEndpoint)
