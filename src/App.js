@@ -4,12 +4,13 @@ import "./App.css";
 // import Button from "@material-ui/core/Button";
 // import TextField from "@material-ui/core/TextField";
 // import Container from "@material-ui/core/Container";
-import Login from "./componentes/Login";
+
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
     <div>
-      <Login/>
+      <AppRouter/>
       {/* <ConversationsList /> */}
     </div>
   );

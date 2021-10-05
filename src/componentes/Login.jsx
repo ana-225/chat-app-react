@@ -18,26 +18,14 @@ const Login = () => {
   const processData = e => {
     e.preventDefault()
         if(!email.trim()){
-        //console.log('Ingrese Email')
         setError('Ingrese Email')
         return
     }
     e.preventDefault()
         if(!pass.trim()){
-        //console.log('Ingrese Contraseña')
         setError('Ingrese Contraseña')
         return
     }
-  //     fetch('https://chat-app-comes.herokuapp.com/auth')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const found = data.find( element => element.userEmail === email );
-  //       if (found){
-  //         return alert('email encontrado')
-  //       } else {return alert('intenta con otro usuario')}
-  //     })
-  //     .catch(console.log);
-  // }
 
   fetch('https://chat-app-comes.herokuapp.com/auth', {
         method: 'post',
@@ -55,10 +43,12 @@ const Login = () => {
     .then((res) => res.json())
     .then((res) => {
         console.log( res );
-        let inMemoryToken = res.token;
-        console.log( inMemoryToken );
+        // let inMemoryToken = res.token;
+        // console.log( inMemoryToken );
+        localStorage.token = res. token
+        console.log(localStorage.token);
         // { Authorization: `Bearer  ${ inMemoryToken }`; }
-        return inMemoryToken;
+        return localStorage.token;
        
     })
     .catch(console.log)
