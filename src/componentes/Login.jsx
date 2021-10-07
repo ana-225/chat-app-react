@@ -7,9 +7,12 @@ import { Box, TextField} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
+import { useHistory } from 'react-router-dom';
+
 
 
 const Login = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [error, setError] = useState(null)
@@ -26,6 +29,7 @@ const Login = () => {
         setError('Ingrese Contraseña')
         return
     }
+
 
   fetch('https://chat-app-comes.herokuapp.com/auth', {
         method: 'post',
@@ -48,7 +52,8 @@ const Login = () => {
         localStorage.token = res. token
         console.log(localStorage.token);
         // { Authorization: `Bearer  ${ inMemoryToken }`; }
-        return localStorage.token;
+      
+        return history.push("/chat");
        
     })
     .catch(console.log)
@@ -98,7 +103,10 @@ const Login = () => {
               <Box textAlign="center">
               <br />
             <Button 
-            type="submit">
+            type="submit"
+            onClick={() => {
+              console.info("enviare los datos");
+            }}>
               {
                 isRegister ? 'Acceder' : 'Registrarse'
               }
