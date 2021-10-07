@@ -8,7 +8,7 @@ function AppRouter() {
     return (
       <Router>
        <Switch>
-          <Route  path='/chat' component={ConversationsList} />
+          <Route exact path='/chat' component={ConversationsList} />
           <Route exact path="/">
             <Login/> 
           </Route>
