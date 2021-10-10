@@ -3,43 +3,44 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
 import socketIOClient from "socket.io-client";
+import jwt_decode from 'jwt-decode';
+import '../../App.css';
 
-const socketEndpoint = "https://chat-app-comes.herokuapp.com";
-const socket = socketIOClient(socketEndpoint);
+
 const MessageEdit = () => {
-
+  const socketEndpoint = "https://chat-app-comes.herokuapp.com";
+  const socket = socketIOClient(socketEndpoint);
     let [message, setMessage] = useState('');
 
- 
 const handleSubmit = (textMessage) => {
-
+  const token = localStorage.token;
+  const tokenDecoded = jwt_decode(token);
+  console.log(tokenDecoded.name);
         socket.emit(
           "chat message",
           JSON.stringify({
             // eslint-disable-next-line
-            text:textMessage,
-            username:'ana',
+            text: textMessage,
+            username: tokenDecoded.name,
           })
         );
-        setMessage='';
+
       };
       return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="sm">
         <div className="inputMessage">
           <TextField
-          
             variant="outlined"
-            margin="normal"
+            margin="none"
             required
             fullWidth
             type="text"
             autoFocus
-            placeholder="Please input your message"
+            placeholder= 'Ingresa aca tu mensaje'
             onChange={(e) => setMessage(e.target.value)}
-
             // onKeyPress={this.handleKeyPress.bind(this)}
           />
-          <div className="submit">
+          {/* <div className="submit"> */}
           <Button
             type="button"
             variant="danger"
@@ -47,7 +48,7 @@ const handleSubmit = (textMessage) => {
             Enviar mensaje
           </Button>
           </div>
-        </div>
+        {/* </div> */}
       </Container>
       );
     };

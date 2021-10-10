@@ -5,12 +5,15 @@ import MessageList from "../componentes/chatbox/MessageList";
 import socketIOClient from "socket.io-client";
 import MessageEdit from "../componentes/chatbox/MessageEdit";
 
-const socketEndpoint = "https://chat-app-comes.herokuapp.com";
-const fetchEndpoint = `${socketEndpoint}/messages`;
-const token = localStorage.token;
-console.log(1, token)
-const socket = socketIOClient(socketEndpoint);
+
 function ConversationsList() {
+   const token = localStorage.token;
+   console.log(1, token)
+   if (token !== undefined) { 
+   const socketEndpoint = "https://chat-app-comes.herokuapp.com";
+   const fetchEndpoint = `${socketEndpoint}/messages`;
+
+   const socket = socketIOClient(socketEndpoint);
    const [messages, setMessages] = useState([]);
    useEffect(() => {
       fetch(fetchEndpoint, {
@@ -51,5 +54,8 @@ return (
    </React.Fragment>
 
  );
+      } else {
+   return console.lof('usuario no logeado');
+}
 }
 export default ConversationsList;

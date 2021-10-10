@@ -12,6 +12,7 @@ import { useHistory } from 'react-router-dom';
 
 
 const Login = () => {
+  localStorage.clear();
   const history = useHistory();
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
@@ -46,15 +47,15 @@ const Login = () => {
     })
     .then((res) => res.json())
     .then((res) => {
-        console.log( res );
-        // let inMemoryToken = res.token;
-        // console.log( inMemoryToken );
-        localStorage.token = res. token
-        console.log(localStorage.token);
-        // { Authorization: `Bearer  ${ inMemoryToken }`; }
-      
-        return history.push("/chat");
-       
+        console.log(res);
+        const response = res.message;
+        if (response) {
+          console.log('usuario no logeado');
+        } else {
+          localStorage.token = res.token;
+          console.log(localStorage.token); 
+          return history.push("/chat");
+        }
     })
     .catch(console.log)
   }
@@ -94,7 +95,7 @@ const Login = () => {
               component="button"
               variant="body2"
               onClick={() => {
-                console.info("I'm a button.");
+                console.info("olvide mi contraseña");
               }}
             >
               Olvidé mi contraseña
