@@ -34,7 +34,6 @@ const Login = () => {
     }
 
   if (isRegister){
-    console.log('ya registrado')
     fetch('https://chat-app-comes.herokuapp.com/auth', {
       method: 'post',
       headers: {
@@ -50,19 +49,16 @@ const Login = () => {
   })
   .then((res) => res.json())
   .then((res) => {
-      console.log(res);
       const response = res.message;
       if (response) {
-        console.log('usuario no logeado');
+        alert('Ingrese un nombre y contraseña correcto');
       } else {
         localStorage.token = res.token;
-        console.log(localStorage.token); 
         return history.push("/chat");
       }
   })
   .catch(console.log)
   } else {
-    console.log('nuevo usuario');
     fetch('https://chat-app-comes.herokuapp.com/users', {
       method: 'post',
       headers: {
@@ -76,9 +72,7 @@ const Login = () => {
       })
     
   })
-  // .then((res) => res.json())
   .then((res) => {
-    console.log(res);
     if (res.status === 200) {
       alert('Usuario Registrado exitosamente, por favor inicie sesión');
     } else {

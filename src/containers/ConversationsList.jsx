@@ -8,7 +8,6 @@ import MessageEdit from "../componentes/chatbox/MessageEdit";
 
 function ConversationsList() {
    const token = localStorage.token;
-   console.log(1, token)
    if (token !== undefined) { 
    const socketEndpoint = "https://chat-app-comes.herokuapp.com";
    const fetchEndpoint = `${socketEndpoint}/messages`;
@@ -37,7 +36,6 @@ function ConversationsList() {
          });
       }
    }, []);
-   console.log(messages);
 return (
    <React.Fragment>
       {messages.length > 0 ? (
@@ -55,7 +53,7 @@ return (
 
  );
       } else {
-   return console.lof('usuario no logeado');
+   return console.log('usuario no logeado');
 }
 }
 export default ConversationsList;

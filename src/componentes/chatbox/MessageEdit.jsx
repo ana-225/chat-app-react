@@ -15,7 +15,6 @@ const MessageEdit = () => {
 const handleSubmit = (textMessage) => {
   const token = localStorage.token;
   const tokenDecoded = jwt_decode(token);
-  console.log(tokenDecoded.name);
         socket.emit(
           "chat message",
           JSON.stringify({
@@ -27,7 +26,7 @@ const handleSubmit = (textMessage) => {
 
       };
       return (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="xl">
         <div className="inputMessage">
           <TextField
             variant="outlined"
