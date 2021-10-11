@@ -3,9 +3,9 @@ import MessageCard from "./MessageCard";
 
 import List from "@material-ui/core/List";
 
+
 const MessageList = (props) => {
   const { messages } = props;
-
   const renderMessages = () => {
     return messages.map((soloMessage) => {
       return (
@@ -20,7 +20,6 @@ const MessageList = (props) => {
       );
     });
   };
-
   return <List className="chatboxMessagesContainer">{renderMessages()}</List>;
 };
 

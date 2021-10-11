@@ -8,13 +8,16 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import { useHistory } from 'react-router-dom';
+import '../App.css';
 
 
 
 const Login = () => {
+  localStorage.clear();
   const history = useHistory();
-  const [email, setEmail] = useState('')
-  const [pass, setPass] = useState('')
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const [name, setName] = useState('');
   const [error, setError] = useState(null)
   const [isRegister, setIsRegister] = useState(true)
   
@@ -30,33 +33,55 @@ const Login = () => {
         return
     }
 
+  if (isRegister){
+    fetch('https://chat-app-comes.herokuapp.com/auth', {
+      method: 'post',
+      headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( {
 
-  fetch('https://chat-app-comes.herokuapp.com/auth', {
-        method: 'post',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify( {
-
-            "email": email,
-            "password": pass,
-        })
-      
-    })
-    .then((res) => res.json())
-    .then((res) => {
-        console.log( res );
-        // let inMemoryToken = res.token;
-        // console.log( inMemoryToken );
-        localStorage.token = res. token
-        console.log(localStorage.token);
-        // { Authorization: `Bearer  ${ inMemoryToken }`; }
-      
+          "email": email,
+          "password": pass,
+      })
+    
+  })
+  .then((res) => res.json())
+  .then((res) => {
+      const response = res.message;
+      if (response) {
+        alert('Ingrese un nombre y contraseña correcto');
+      } else {
+        localStorage.token = res.token;
         return history.push("/chat");
-       
-    })
-    .catch(console.log)
+      }
+  })
+  .catch(console.log)
+  } else {
+    fetch('https://chat-app-comes.herokuapp.com/users', {
+      method: 'post',
+      headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( {
+          "name": name,
+          "email": email,
+          "password": pass,
+      })
+    
+  })
+  .then((res) => {
+    if (res.status === 200) {
+      alert('Usuario Registrado exitosamente, por favor inicie sesión');
+    } else {
+      alert ('El usuario ya esta registrado');
+    }
+  })
+  .catch(console.log)
+  } 
+  
   }
   return ( 
       <Grid
@@ -71,7 +96,16 @@ const Login = () => {
                 }
               <Box 
               textAlign="center">
-                
+              <div className = {isRegister ? 'userName' : ''}>
+               <TextField
+                 type="text"
+                 className="name"
+                 placeholder="Nombre Usuario"
+                 onChange={e => setName(e.target.value)}
+                 value={name}  
+               />
+              </div>
+              <br/>
               <TextField
                 type="email"
                 className="email"
@@ -94,7 +128,7 @@ const Login = () => {
               component="button"
               variant="body2"
               onClick={() => {
-                console.info("I'm a button.");
+                console.info("olvide mi contraseña");
               }}
             >
               Olvidé mi contraseña
@@ -117,7 +151,9 @@ const Login = () => {
               type="button"
               variant="body2"
               onClick={() => {
-                setIsRegister(!isRegister)}}
+                setIsRegister(!isRegister)
+                  
+              }}
             >
               {
                 isRegister ? '¿Eres nuevo?' : '¿Ya tienes cuenta?'
