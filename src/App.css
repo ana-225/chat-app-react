@@ -3,6 +3,35 @@
   /* background-color: #3e2645; */
 }
 
+.containerLogin {
+  background-image: url(images/FondoTestimonio\ 1.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+}
+
+/* .logo{
+  display: flex;
+} */
+
+.containerstart{
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+
+}
+
+.boxForm{
+  background-color: white;
+  border-radius: 0.5rem;
+  
+  margin: 10rem;
+}
+
 .App-logo {
   height: 40px;
 }

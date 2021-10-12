@@ -9,8 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import { useHistory } from 'react-router-dom';
 import '../App.css';
-
-
+import logo from '../images/logo.png'
 
 const Login = () => {
   localStorage.clear();
@@ -84,86 +83,93 @@ const Login = () => {
   
   }
   return ( 
-      <Grid
+    <div className ='containerLogin'>
+      <Grid 
             item xs={12}>
-              <form onSubmit={processData}>
-                {
+              <div className = 'boxForm' >
+                <div className = 'containerstart'> <img src={logo} className='logo' width='200px' alt = ''></img>
+                </div>
+      
+               <form onSubmit={processData}>
+                 {
 
-                  error && (
-                    <div className="divAlert">{error}</div>
-                  )
-
-                }
-              <Box 
-              textAlign="center">
-              <div className = {isRegister ? 'userName' : ''}>
-               <TextField
-                 type="text"
-                 className="name"
-                 placeholder="Nombre Usuario"
-                 onChange={e => setName(e.target.value)}
-                 value={name}  
-               />
-              </div>
-              <br/>
-              <TextField
-                type="email"
-                className="email"
-                placeholder="Email"
-                onChange={e => setEmail(e.target.value)}
-                value={email}  
-              />
-              <br />
-              <br/>
-              <TextField
-                type="password"
-                className="password"
-                placeholder="Contraseña"
-                onChange={e => setPass(e.target.value)}                            
-                value={pass}
+                   error && (
+                     <div className="divAlert">{error}</div>
+                   )
+ 
+                 }
+               <Box 
+               textAlign="center">
+               <div className = {isRegister ? 'userName' : ''}>
+                <TextField
+                  type="text"
+                  className="name"
+                  placeholder="Nombre Usuario"
+                  onChange={e => setName(e.target.value)}
+                  value={name}  
                 />
-                </Box>
-              <Box textAlign="center">
-            <Link
-              component="button"
-              variant="body2"
-              onClick={() => {
-                console.info("olvide mi contraseña");
-              }}
-            >
-              Olvidé mi contraseña
-            </Link>
-            </Box>
-              <Box textAlign="center">
-              <br />
-            <Button 
-            type="submit"
-            onClick={() => {
-              console.info("enviare los datos");
-            }}>
-              {
-                isRegister ? 'Acceder' : 'Registrarse'
-              }
-            </Button>
-            </Box>
-            <Box textAlign="center">
-            <Link
-              type="button"
-              variant="body2"
-              onClick={() => {
-                setIsRegister(!isRegister)
+               </div>
+               <br/>
+               <TextField
+                 type="email"
+                 className="email"
+                 placeholder="Email"
+                 onChange={e => setEmail(e.target.value)}
+                 value={email}  
+               />
+               <br />
+               <br/>
+               <TextField
+                 type="password"
+                 className="password"
+                 placeholder="Contraseña"
+                 onChange={e => setPass(e.target.value)}                            
+                 value={pass}
+                 />
+                 </Box>
+               <Box textAlign="center">
+              <Link
+               component="button"
+               variant="body2"
+               onClick={() => {
+                 console.info("olvide mi contraseña");
+               }}
+               >
+               Olvidé mi contraseña
+             </Link>
+             </Box>
+               <Box textAlign="center">
+               <br />
+             <Button 
+             type="submit"
+             onClick={() => {
+               console.info("enviare los datos");
+             }}>
+               {
+                 isRegister ? 'Acceder' : 'Registrarse'
+               }
+             </Button>
+             </Box>
+             <Box textAlign="center">
+             <Link
+               type="button"
+               variant="body2"
+               onClick={() => {
+                 setIsRegister(!isRegister)
                   
-              }}
-            >
-              {
-                isRegister ? '¿Eres nuevo?' : '¿Ya tienes cuenta?'
-              }
+               }}
+             >
+               {
+                 isRegister ? '¿Eres nuevo?' : '¿Ya tienes cuenta?'
+               }
               
-            </Link>
-            </Box>
+              </Link>
+              </Box>
             
-            </form>
+              </form>
+            </div>
           </Grid>
+          </div>
  )
 }
 
