@@ -143,7 +143,6 @@ const Login = () => {
              <Button 
              type="submit"
              onClick={() => {
-               console.info("enviare los datos");
              }}>
                {
                  isRegister ? 'Acceder' : 'Registrarse'
