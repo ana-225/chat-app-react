@@ -23,6 +23,7 @@ const handleSubmit = (textMessage) => {
             username: tokenDecoded.name,
           })
         );
+        textMessage.target.reset()
 
       };
       return (
@@ -36,7 +37,10 @@ const handleSubmit = (textMessage) => {
             type="text"
             autoFocus
             placeholder= 'Ingresa aca tu mensaje'
+            value={message}
             onChange={(e) => setMessage(e.target.value)}
+
+            
             // onKeyPress={this.handleKeyPress.bind(this)}
           />
           {/* <div className="submit"> */}
