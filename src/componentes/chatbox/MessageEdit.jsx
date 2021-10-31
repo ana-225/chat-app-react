@@ -23,9 +23,11 @@ const handleSubmit = (textMessage) => {
             username: tokenDecoded.name,
           })
         );
-        textMessage.target.reset()
+        textMessage.target.reset();
+        setMessage("");
 
       };
+  
       return (
         <Container component="main" maxWidth="xl">
         <div className="inputMessage">
