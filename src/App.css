@@ -13,7 +13,9 @@
   align-items: center;
 
 }
-
+.boxUnique{
+  text-align: start;
+}
 /* .logo{
   display: flex;
 } */
@@ -56,7 +58,7 @@
 .card-wrapper {
   width: 33.33%;
   display: flex;
-  background: #e0e0ff;
+
 }
 
 .newMessageForm {
@@ -68,6 +70,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  text-align: start;
 }
 
 .card div:nth-child(1) {
@@ -97,8 +100,13 @@ button {
 .chatboxMessagesContainer {
   margin: 10px;
   height: 70vh;
+  color: blue;
   overflow: scroll;
 }
 .userName {
   display: none;
 }
+
+.MuiTypography-displayBlock{
+  text-align: start;
+} 

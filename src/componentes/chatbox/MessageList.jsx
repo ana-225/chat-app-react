@@ -9,7 +9,7 @@ const MessageList = (props) => {
   const renderMessages = () => {
     return messages.map((soloMessage) => {
       return (
-        <MessageCard
+        <MessageCard 
           key={soloMessage.id}
           id={soloMessage.id}
           messageText={soloMessage.text}

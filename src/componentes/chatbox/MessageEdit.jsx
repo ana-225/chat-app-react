@@ -23,7 +23,7 @@ const handleSubmit = (textMessage) => {
             username: tokenDecoded.name,
           })
         );
-        textMessage.target.reset();
+        message.target.reset();
         setMessage("");
 
       };
@@ -39,8 +39,9 @@ const handleSubmit = (textMessage) => {
             type="text"
             autoFocus
             placeholder= 'Ingresa aca tu mensaje'
-            value={message}
             onChange={(e) => setMessage(e.target.value)}
+            value={message}
+
 
             
             // onKeyPress={this.handleKeyPress.bind(this)}
@@ -49,6 +50,7 @@ const handleSubmit = (textMessage) => {
           <Button
             type="button"
             variant="danger"
+            alignItems="flex-start"
             onClick={() =>handleSubmit(message)}>
             Enviar mensaje
           </Button>
