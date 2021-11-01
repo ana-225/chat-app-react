@@ -39,7 +39,7 @@ function ConversationsList() {
 return (
    <React.Fragment>
       {messages.length > 0 ? (
-         <MessageList
+         <MessageList clasName="boxUnique"
          messages={messages}
       // <MessagesArea
       //    messages={messages}
