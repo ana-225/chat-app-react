@@ -11,6 +11,7 @@ const MessageEdit = () => {
   const socketEndpoint = "https://chat-app-comes.herokuapp.com";
   const socket = socketIOClient(socketEndpoint);
     const [message, setMessage] = useState('');
+    const [clearMessage, setclearMessage]
 
 const handleSubmit = (textMessage) => {
   const token = localStorage.token;
@@ -23,7 +24,7 @@ const handleSubmit = (textMessage) => {
             username: tokenDecoded.name,
           })
         );
-         message.target.reset();
+         textMessage.target.reset();
          setMessage("");
 
       };
