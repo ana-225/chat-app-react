@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import { useHistory } from 'react-router-dom';
 import '../App.css';
-import logo from '../images/logo.png'
+import logo from '../images/logo.jpeg'
 
 const Login = () => {
   localStorage.clear();
