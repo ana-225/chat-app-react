@@ -24,7 +24,7 @@ const handleSubmit = (textMessage) => {
             username: tokenDecoded.name,
           })
         );
-         textMessage.target.reset();
+        //  textMessage.target.reset();
          setMessage("");
 
       };
