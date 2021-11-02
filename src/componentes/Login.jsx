@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import { useHistory } from 'react-router-dom';
 import '../App.css';
-import logo from '../images/logo.jpeg'
+import logo from '../images/logo.png'
 
 const Login = () => {
   localStorage.clear();
@@ -87,7 +87,7 @@ const Login = () => {
       <Grid 
             item xs={12}>
               <div className = 'boxForm' >
-                <div className = 'containerstart'> <img src={logo} className='logo' width='200px' alt = ''></img>
+                <div className = 'containerstart'> <img src={logo} className='logo' width='50%' alt = ''></img>
                 </div>
       
                <form onSubmit={processData}>
@@ -119,7 +119,7 @@ const Login = () => {
                />
                <br />
                <br/>
-               <TextField
+               <TextField inputStyle={{ backgroundColor: 'red' }} 
                  type="password"
                  className="password"
                  placeholder="Contraseña"
