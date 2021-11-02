@@ -10,7 +10,7 @@ import '../../App.css';
 const MessageEdit = () => {
   const socketEndpoint = "https://chat-app-comes.herokuapp.com";
   const socket = socketIOClient(socketEndpoint);
-    let [message, setMessage] = useState('');
+    const [message, setMessage] = useState('');
 
 const handleSubmit = (textMessage) => {
   const token = localStorage.token;
