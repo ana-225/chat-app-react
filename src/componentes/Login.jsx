@@ -62,7 +62,8 @@ const Login = () => {
       method: 'post',
       headers: {
           'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify( {
           "name": name,
@@ -102,6 +103,7 @@ const Login = () => {
                textAlign="center">
                <div className = {isRegister ? 'userName' : ''}>
                 <TextField
+                  variant="filled"
                   type="text"
                   className="name"
                   placeholder="Nombre Usuario"

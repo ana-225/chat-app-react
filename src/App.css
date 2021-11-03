@@ -117,3 +117,7 @@ button {
 .MuiTypography-colorPrimary {
   color: #060607
 }
+
+.MuiInputBase-input{
+  background-color: white;
+}
