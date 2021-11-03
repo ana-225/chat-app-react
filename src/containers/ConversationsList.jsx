@@ -20,7 +20,6 @@ function ConversationsList() {
          headers: {
              'Accept': 'application/json, text/plain, */*',
              'Authorization': `Bearer ${token}`,
-             'url': `${baseUrl}?page=${page}`
              'Content-Type': 'application/json',
              'Access-Control-Allow-Origin': '*'
              
